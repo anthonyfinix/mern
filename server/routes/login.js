@@ -5,17 +5,15 @@ const jwt = require("jsonwebtoken");
 
 module.exports = async (req, res) => {
   const { username, password } = req.body;
-  let { error } = validate.login.validate({
-    username: username,
-    password: password,
-  });
+  
+  let { error } = validate.login.validate({username,password});
 
   // validate
-  if (error) return res.json({ error: error.details[0].message });
+  if (error) return res.status(400).json({ error: error.details[0].message });
   const user = await User.findOne({ username });
-  if (!user) return res.json({ error: "You are not Registered" });
+  if (!user) return res.status(401).json({ error: "You are not Registered" });
   let result = await bcrypt.compare(password, user.password);
-  if (!result) return res.json({ error: "Wrong Password" });
+  if (!result) return res.status(401).json({ error: "Wrong Password" });
 
   // sign tokens
   let accessToken = jwt.sign(
@@ -35,7 +33,7 @@ module.exports = async (req, res) => {
 
   // set cookies
   res.cookie("refreshToken", refreshToken, {
-    maxAge: 345600000,
+    expiresIn: 345600000,
     httpOnly: true,
   });
 
@@ -45,6 +43,6 @@ module.exports = async (req, res) => {
   response.username = user.username;
   response.email = user.email;
   response.accessToken = accessToken
-  res.json(response);
+  res.status(200).json(response);
 
 };

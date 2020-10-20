@@ -14,13 +14,10 @@ module.exports = async (req, res, next) => {
         if (refreshToken) {
           const { username } = jwt.decode(refreshToken);
           const user = await User.findOne({ username });
-          if(user){
+          if (user) {
             let refreshSecret = process.env.JWT_SECRET + user.password;
             try {
-              let { email } = await jwt.verify(
-                refreshToken,
-                refreshSecret
-              );
+              let { email } = await jwt.verify(refreshToken, refreshSecret);
               req.user = user;
               let accessToken = jwt.sign(
                 { username: user.name, email: user.email },
