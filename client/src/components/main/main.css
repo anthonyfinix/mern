@@ -1,10 +1,13 @@
-#main-content-wrapper {
+#app{
+  min-height: 100vh;
+}
+#app-main-wrapper {
   flex-grow: 1;
 }
-#main-content-wrapper #main-sidebar-wrapper {
+#app-main-wrapper #main-sidebar-wrapper {
   flex-basis: 200px;
   border-right: 1px solid rgba(0, 0, 0, 0.247);
-  transition: all .2s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 #main-sidebar-wrapper.close {

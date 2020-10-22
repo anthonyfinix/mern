@@ -28,4 +28,4 @@
 - [ ] User Context
 - [ ] Authentication
 - [ ] Product Context
-- [ ] Product Page
+- [x] Product Page
