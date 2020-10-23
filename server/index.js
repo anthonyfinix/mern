@@ -10,7 +10,6 @@ const cors = require("cors");
 // custom
 const { handleToken } = require("./middlewares");
 
-
 db.connect().then((response) => {
   if (response.connection) {
     const { name, host } = response.connection;
@@ -18,14 +17,13 @@ db.connect().then((response) => {
     console.log(`connected to Database: ${name}`);
     app.listen(port);
     console.log(`Using Port : ${port}`);
-    
-    app.use(cors());
+
+    app.use(cors({ origin: "http://localhost:3000", credentials: true }));
     app.use(express.json());
     app.use(cookieParser());
-    
+
     app.use(handleToken);
     app.use(routes);
-
   } else {
     console.log(`Error connecting to database`);
     console.log(`ERROR CODE: ${response.code}`);

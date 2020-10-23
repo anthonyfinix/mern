@@ -9,8 +9,10 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { Link, useHistory } from 'react-router-dom';
 import './login.css';
 import { loginUser } from '../../api';
+import { UserContext } from '../../contexts/userContext';
 
 function Login() {
+    let { setUser } = React.useContext(UserContext);
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [snackBar, setSnackbar] = React.useState({ open: false, message: '' });
@@ -35,6 +37,8 @@ function Login() {
                     setTimeout(() => closeSnackbar(), 6000)
                 } else {
                     console.log(response)
+                    localStorage.setItem('x-token',response.accessToken)
+                    setUser(response)
                     history.push('/app');
                 }
             })

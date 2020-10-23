@@ -6,18 +6,22 @@ import AppProvider from "./contexts/appContext";
 import Welcome from "./components/welcome";
 import Main from "./components/main";
 import Register from "./components/register";
-import Login from './components/login'
+import Login from "./components/login";
+import ProtectedRoute from '../src/components/protectedRoute';
+import UserProvider from "./contexts/userContext";
 function App() {
   return (
     <Box className="App" display="flex" flexDirection="column">
       <Router>
         <AppProvider>
-          <Switch>
-            <Route exact path="/" component={Welcome} />
-            <Route exact path="/app" component={Main} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
-          </Switch>
+          <UserProvider>
+            <Switch>
+              <Route exact path="/" component={Welcome} />
+              <ProtectedRoute exact path="/app" component={Main} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+            </Switch>
+          </UserProvider>
         </AppProvider>
       </Router>
     </Box>
