@@ -27,6 +27,7 @@
 - [x] Register Page
 - [x] show user login and registration errors on snackbars
 - [ ] User Context
+- [ ] localStorage handles
 - [ ] Authentication
 - [ ] Product Context
 - [x] Product Page
