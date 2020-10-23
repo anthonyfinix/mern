@@ -6,7 +6,7 @@ import AppProvider from "./contexts/appContext";
 import Welcome from "./components/welcome";
 import Main from "./components/main";
 import Register from "./components/register";
-import Login from "./components/login";
+import Login from './components/login'
 function App() {
   return (
     <Box className="App" display="flex" flexDirection="column">
@@ -15,8 +15,8 @@ function App() {
           <Switch>
             <Route exact path="/" component={Welcome} />
             <Route exact path="/app" component={Main} />
-            <Router exact path="/register" component={Register} />
-            <Router exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
           </Switch>
         </AppProvider>
       </Router>

@@ -5,6 +5,7 @@ const errorHandle = require("./errorHandle");
 const register = require("./register");
 const login = require("./login");
 const logout = require("./logout");
+const getCurrentUser = require("./getCurrentUser")
 
 Routes.get("/", (req, res) => {
   if (req.user) return res.send(req.user);
@@ -13,6 +14,7 @@ Routes.get("/", (req, res) => {
 
 Routes.post("/register", register);
 Routes.post("/login", login);
+Routes.get("/login", getCurrentUser);
 Routes.get("/logout", logout);
 Routes.use("/api", api);
 Routes.use(notFound);

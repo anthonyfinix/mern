@@ -1,8 +1,10 @@
 GET http://localhost:3500/
 ###
+GET http://localhost:3500/login
+x-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFudGhvbnlmaW5peCIsImVtYWlsIjoiYW50aG9ueWZpbml4QGdtYWlsLmNvbSIsImlhdCI6MTYwMzM4NTYyNiwiZXhwIjoxNjAzMzg1Njg2fQ.V-zMahRHKV44x8UX44Hb3RmGcg4lKpXvInmvwDv36Ew
+###
 POST http://localhost:3500/login
 Content-Type: application/json
-x-token: kjsdhf
 
 {
     "username": "anthonyfinix",
