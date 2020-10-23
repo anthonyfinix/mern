@@ -23,9 +23,11 @@
 - [x] Material UI
 - [x] React Router Dom
 - [x] App Context
-- [ ] Login Page
-- [ ] Register Page
+- [x] Login Page
+- [x] Register Page
+- [x] show user login and registration errors on snackbars
 - [ ] User Context
 - [ ] Authentication
 - [ ] Product Context
 - [x] Product Page
+- [ ] Sidebar
