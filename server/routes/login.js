@@ -4,16 +4,16 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 module.exports = async (req, res) => {
+  // redirect if already logged in
+  if(req.user) return res.json({error:"You are already registered, Please logout first"})
   const { username, password } = req.body;
-  
   let { error } = validate.login.validate({username,password});
-
   // validate
-  if (error) return res.status(400).json({ error: error.details[0].message });
+  if (error) return res.json({ error: error.details[0].message });
   const user = await User.findOne({ username });
-  if (!user) return res.status(401).json({ error: "You are not Registered" });
+  if (!user) return res.json({ error: "You are not Registered" });
   let result = await bcrypt.compare(password, user.password);
-  if (!result) return res.status(401).json({ error: "Wrong Password" });
+  if (!result) return res.json({ error: "Wrong Password" });
 
   // sign tokens
   let accessToken = jwt.sign(
@@ -43,6 +43,6 @@ module.exports = async (req, res) => {
   response.username = user.username;
   response.email = user.email;
   response.accessToken = accessToken
-  res.status(200).json(response);
+  res.json(response);
 
 };

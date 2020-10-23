@@ -10,3 +10,13 @@ Content-Type: application/json
     "username": "anthonyfinix",
     "password": "anthonyfinix@123"
 }
+###
+POST http://localhost:3500/register
+Content-Type: application/json
+
+{
+    "name":"Something",
+    "username": "anthonyfsinix",
+    "email":"Vola@gmail.com",
+    "password": "anthonyfinix@123"
+}

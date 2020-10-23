@@ -9,7 +9,7 @@ const getCurrentUser = require("./getCurrentUser")
 
 Routes.get("/", (req, res) => {
   if (req.user) return res.send(req.user);
-  return res.status(200).send("Root");
+  return res.send("Root");
 });
 
 Routes.post("/register", register);
