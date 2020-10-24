@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
 
   // sign tokens
   let accessToken = jwt.sign(
-    { username: user.username, email: user.email },
+    { name: user.name, username: user.username, email: user.email },
     process.env.JWT_SECRET,
     { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
   );
@@ -39,11 +39,11 @@ module.exports = async (req, res) => {
   let cookieParam = {
     expiresIn: process.env.COOKIE_EXPIRY,
     httpOnly: true,
+  };
+  if (process.env.NODE_ENV == "production") {
+    cookieParam.secure;
   }
-  if(process.env.NODE_ENV == "production"){
-    cookieParam.secure
-  }
-  res.cookie("refreshToken", refreshToken );
+  res.cookie("refreshToken", refreshToken);
 
   // set response
   let response = {};

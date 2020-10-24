@@ -18,9 +18,10 @@ module.exports = async (req, res, next) => {
             let refreshSecret = process.env.JWT_SECRET + user.password;
             try {
               let { email } = await jwt.verify(refreshToken, refreshSecret);
+              console.log(user)
               req.user = user;
               let accessToken = jwt.sign(
-                { username: user.name, email: user.email },
+                { name: user.name, username: user.username, email: user.email },
                 process.env.JWT_SECRET,
                 { expiresIn: "1m" }
               );
