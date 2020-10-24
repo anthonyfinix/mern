@@ -23,13 +23,13 @@ module.exports = async (req, res) => {
   let accessToken = jwt.sign(
     { name: user.name, username: user.username, email: user.email },
     process.env.JWT_SECRET,
-    { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
+    { expiresIn: process.env.ACCESS_TOKEN_EXPIRY  || '10m'}
   );
 
   let refreshToken = jwt.sign(
     { username: user.username, email: user.email },
     process.env.JWT_SECRET + user.password,
-    { expiresIn: process.env.REFRESH_TOKEN_EXPIRY }
+    { expiresIn: process.env.REFRESH_TOKEN_EXPIRY || '7d' }
   );
 
   // set header
