@@ -26,9 +26,9 @@ export default function Header() {
                 {location.pathname.includes('/app') ? <SidebarToggleBtn /> : null}
                 <Button component={Link} to="/" style={{ fontWeight: "bold", color: "white" }} >{appConfiguration.name}</Button>
                 <Box style={{ marginLeft: "auto" }}>
-                    {!!user ? <AppBtn/> : <LoginBtn/>}
-                    {!!user ? <UserAvatar/> : <RegisterBtn/>}
-                    
+                    {!!user ? location.pathname.includes('/app') ? null : <AppBtn /> : <LoginBtn />}
+                    {!!user ? <UserAvatar /> : <RegisterBtn />}
+
                 </Box>
             </Toolbar>
         </AppBar>

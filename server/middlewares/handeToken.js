@@ -6,8 +6,8 @@ module.exports = async (req, res, next) => {
   const token = req.header("x-token");
   if (token) {
     try {
-      let { username, email } = jwt.verify(token, process.env.JWT_SECRET);
-      req.user = { username, email };
+      let { name, username, email } = jwt.verify(token, process.env.JWT_SECRET);
+      req.user = { name, username, email };
     } catch (error) {
       if (error.message === "jwt expired") {
         const refreshToken = req.cookies.refreshToken;
