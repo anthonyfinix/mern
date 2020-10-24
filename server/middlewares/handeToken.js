@@ -23,7 +23,7 @@ module.exports = async (req, res, next) => {
               let accessToken = jwt.sign(
                 { name: user.name, username: user.username, email: user.email },
                 process.env.JWT_SECRET,
-                { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
+                { expiresIn: process.env.ACCESS_TOKEN_EXPIRY || '10m' }
               );
               res.set({ "x-token": accessToken });
               if (process.env.NODE_ENV === "development"){
