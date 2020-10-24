@@ -5,10 +5,14 @@ const jwt = require("jsonwebtoken");
 
 module.exports = async (req, res) => {
   // redirect if already logged in
-  if(req.user) return res.json({error:"You are already registered, Please logout first"})
-  const { username, password } = req.body;
-  let { error } = validate.login.validate({username,password});
+  if (req.user) {
+    return res.json({
+      error: "You are already registered, Please logout first",
+    });
+  }
   // validate
+  const { username, password } = req.body;
+  let { error } = validate.login.validate({ username, password });
   if (error) return res.json({ error: error.details[0].message });
   const user = await User.findOne({ username });
   if (!user) return res.json({ error: "You are not Registered" });
@@ -19,30 +23,33 @@ module.exports = async (req, res) => {
   let accessToken = jwt.sign(
     { username: user.username, email: user.email },
     process.env.JWT_SECRET,
-    { expiresIn: "1m" }
+    { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
   );
 
   let refreshToken = jwt.sign(
     { username: user.username, email: user.email },
     process.env.JWT_SECRET + user.password,
-    { expiresIn: "4d" }
+    { expiresIn: process.env.REFRESH_TOKEN_EXPIRY }
   );
 
   // set header
-  res.set({"x-token":accessToken})
+  res.set({ "x-token": accessToken });
 
   // set cookies
-  res.cookie("refreshToken", refreshToken, {
-    expiresIn: 345600000,
+  let cookieParam = {
+    expiresIn: process.env.COOKIE_EXPIRY,
     httpOnly: true,
-  });
+  }
+  if(process.env.NODE_ENV == "production"){
+    cookieParam.secure
+  }
+  res.cookie("refreshToken", refreshToken );
 
   // set response
   let response = {};
   response.name = user.name;
   response.username = user.username;
   response.email = user.email;
-  response.accessToken = accessToken
+  response.accessToken = accessToken;
   res.json(response);
-
 };

@@ -43,9 +43,6 @@ function UserAvatar() {
                     <ListItem button>
                         <ListItemText primary={user.name} />
                     </ListItem>
-                    <ListItem button>
-                        <ListItemText primary="Profile" />
-                    </ListItem>
                     <ListItem button onClick={handleLogout}>
                         <ListItemText primary="Logout" />
                     </ListItem>

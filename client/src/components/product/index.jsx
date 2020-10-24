@@ -1,5 +1,5 @@
 import Box from '@material-ui/core/Box';
-import React, {  memo } from 'react';
+import React from 'react';
 function Product() {
     return (
         <Box px={3}>
@@ -8,4 +8,4 @@ function Product() {
     )
 }
 
-export default memo(Product)
+export default React.memo(Product)

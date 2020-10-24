@@ -4,7 +4,7 @@ const loginUser = async () => {
   let response = null;
   let accessToken = localStorage.getItem("x-token");
   if (accessToken) {
-    response = await axios.get("http://localhost:3500/login", {
+    response = await axios.get(`${process.env.REACT_APP_API_DOMAIN}/login`, {
       withCredentials: true,
       headers: { "x-token": accessToken },
     });
