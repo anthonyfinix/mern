@@ -34,6 +34,7 @@ module.exports = async (req, res) => {
 
   // set header
   res.set({ "x-token": accessToken });
+  if(process.env.NODE_ENV === 'development') res.set({"Access-Control-Expose-Headers": "x-token"})
 
   // set cookies
   let cookieParam = {

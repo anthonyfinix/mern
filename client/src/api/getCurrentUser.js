@@ -8,7 +8,8 @@ const loginUser = async () => {
       withCredentials: true,
       headers: { "x-token": accessToken },
     });
-    localStorage.setItem("x-token", response.config.headers['x-token']);
+    console.log(response)
+    localStorage.setItem("x-token", response.headers['x-token']);
     response = response.data
   }
   return response;

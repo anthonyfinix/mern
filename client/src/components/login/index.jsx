@@ -36,7 +36,6 @@ function Login() {
                     setSnackbar({ open: true, message: response.error })
                     setTimeout(() => closeSnackbar(), 6000)
                 } else {
-                    console.log(response)
                     localStorage.setItem('x-token',response.accessToken)
                     setUser(response)
                     history.push('/app');
