@@ -1,0 +1,31 @@
+{
+  "name": "mern",
+  "version": "1.0.0",
+  "description": "boiler plate for mern stack",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anthonyfinix/mern.git"
+  },
+  "keywords": [
+    "mern",
+    "boilerplate",
+    "express",
+    "react"
+  ],
+  "author": "Anthony Finix",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anthonyfinix/mern/issues"
+  },
+  "homepage": "https://github.com/anthonyfinix/mern#readme",
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "react-router-dom": "^5.2.0"
+  }
+}
